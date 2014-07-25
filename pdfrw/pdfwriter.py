@@ -136,6 +136,8 @@ def FormatObjects(f, trailer, version='1.3', compress=True, killobj=(),
                     return result
                 obj = (PdfArray, PdfDict)[isinstance(obj, dict)](obj)
                 continue
+            elif isinstance(obj, float):
+                return ('%f' % obj).rstrip('0')
 
             if not hasattr(obj, 'indirect') and isinstance(obj, basestring):
                 return encode(obj)
